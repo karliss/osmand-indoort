@@ -1,0 +1,362 @@
+<renderingStyle name="IndoorExperimental" depends="default" defaultColor="#ebe7e4" version="1">
+
+	
+	<renderingConstant name="null" value="#00000000"/>
+	
+	<renderingConstant name="indoor_room" value="#fefee2"/>
+	<renderingConstant name="indoor_area" value="#fdfcfa"/>
+	<renderingConstant name="transport_platform" value="#fdfcfa"/>
+	<renderingConstant name="indoor_corridor" value="#fdfcfa"/>
+	<renderingConstant name="indoor_level" value="#fdfcfa"/>
+	<renderingConstant name="indoor_wall" value="#888b8d"/>
+	<renderingConstant name="indoor_vert" value="#888b8d"/>
+	<renderingConstant name="indoor_commerce" value="#ffdaad"/>
+
+
+	<renderingConstant name="indoor_minzoom" value="17"/>
+	<renderingProperty attr="enable_indoor" name="Enable indoor" description="Enable indoor" category="indoor"
+			type="boolean" />
+	<renderingProperty attr="indoor_level" name="Indoor level" description="Indoor level" category="indoor"
+			type="string" possibleValues="0,1,2,3,4,5,-1,-2,-3,-4,-5"/>
+	<renderingProperty attr="hide_paths" name="Hide paths" description="Hide paths and stairs" category="indoor"
+			type="boolean" />
+
+	<order>
+		<switch enable_indoor="true">
+			<switch minzoom="$indoor_minzoom">
+
+				<switch tag="indoor" value="wall" area="true">
+					<case additional="level_0=yes" indoor_level="0"/>
+					<case additional="level_1=yes" indoor_level="1"/>
+					<case additional="level_2=yes" indoor_level="2"/>
+					<case additional="level_3=yes" indoor_level="3"/>
+					<case additional="level_4=yes" indoor_level="4"/>
+					<case additional="level_5=yes" indoor_level="5"/>
+					<case additional="level__1=yes" indoor_level="-1"/>
+					<case additional="level__2=yes" indoor_level="-2"/>
+					<case additional="level__3=yes" indoor_level="-3"/>
+					<case additional="level__4=yes" indoor_level="-4"/>
+					<case additional="level__5=yes" indoor_level="-5"/>
+					<apply_if order="30" objectType="3"/>
+				</switch>
+				<!--case objectType="2" tag="indoor" value="wall" order="121" area="false"/-->
+
+				<switch tag="indoor" value="wall" area="false">
+					<!--case objectType="2" order="121"/-->
+					
+					<case additional="level_0=yes"/>
+					<case additional="level_1=yes"/>
+					<case additional="level_2=yes"/>
+					<case additional="level_3=yes"/>
+					<case additional="level_4=yes"/>
+					<case additional="level_5=yes"/>
+					<case additional="level__1=yes"/>
+					<case additional="level__2=yes"/>
+					<case additional="level__3=yes"/>
+					<case additional="level__4=yes"/>
+					<case additional="level__5=yes"/>
+					<apply order="-1" objectType="2" />
+					<apply>
+						<switch>
+							<case additional="level_0=yes" indoor_level="0"/>
+							<case additional="level_1=yes" indoor_level="1"/>
+							<case additional="level_2=yes" indoor_level="2"/>
+							<case additional="level_3=yes" indoor_level="3"/>
+							<case additional="level_4=yes" indoor_level="4"/>
+							<case additional="level_5=yes" indoor_level="5"/>
+							<case additional="level__1=yes" indoor_level="-1"/>
+							<case additional="level__2=yes" indoor_level="-2"/>
+							<case additional="level__3=yes" indoor_level="-3"/>
+							<case additional="level__4=yes" indoor_level="-4"/>
+							<case additional="level__5=yes" indoor_level="-5"/>
+							<apply order="140" objectType="2" />
+						</switch>
+					</apply>
+					<!--apply_if/-->
+				</switch>
+				<!--case tag="indoor" value="wall" area="false" order="40" type="2"/-->
+				<switch tag="indoor">
+					<switch tag="indoor" indoor_level="995">
+						<case value="room"/>
+						<case value="area"/>
+						<case value="corridor"/>
+						<case value="column"/>
+						<apply_if order="-1" objectType="3"/>
+					</switch>
+					<switch tag="indoor">
+						<case value="room"/>
+						<case value="area"/>
+						<case value="corridor"/>
+						<case value="column"/>
+						<apply order="12">
+							<switch>
+								<case additional="level_0=yes"/>
+								<case additional="level_1=yes"/>
+								<case additional="level_2=yes"/>
+								<case additional="level_3=yes"/>
+								<case additional="level_4=yes"/>
+								<case additional="level_5=yes"/>
+								<case additional="level__1=yes"/>
+								<case additional="level__2=yes"/>
+								<case additional="level__3=yes"/>
+								<case additional="level__4=yes"/>
+								<case additional="level__5=yes"/>
+								<apply order="-1"/>
+								<apply>
+									<switch>
+										<case additional="level_0=yes" indoor_level="0"/>
+										<case additional="level_1=yes" indoor_level="1"/>
+										<case additional="level_2=yes" indoor_level="2"/>
+										<case additional="level_3=yes" indoor_level="3"/>
+										<case additional="level_4=yes" indoor_level="4"/>
+										<case additional="level_5=yes" indoor_level="5"/>
+										<case additional="level__1=yes" indoor_level="-1"/>
+										<case additional="level__2=yes" indoor_level="-2"/>
+										<case additional="level__3=yes" indoor_level="-3"/>
+										<case additional="level__4=yes" indoor_level="-4"/>
+										<case additional="level__5=yes" indoor_level="-5"/>
+										<apply order="14" objectType="3"/>
+										<apply_if value="room" order="15" /> <!-- bit higher than corridors for nicer outline layering -->
+										<apply_if value="column" order="16" />
+									</switch>
+								</apply>
+							</switch>
+						</apply>
+					</switch>
+				</switch>
+
+				
+				<switch tag="public_transport" value="platform" area="true" >
+					<!-- commonly used in big German train stations -->
+					<case additional="level_0=yes"/>
+					<case additional="level_1=yes"/>
+					<case additional="level_2=yes"/>
+					<case additional="level_3=yes"/>
+					<case additional="level_4=yes"/>
+					<case additional="level_5=yes"/>
+					<case additional="level__1=yes"/>
+					<case additional="level__2=yes"/>
+					<case additional="level__3=yes"/>
+					<case additional="level__4=yes"/>
+					<case additional="level__5=yes"/>
+					<apply order="-1" objectType="3"/>
+					<apply>
+						<switch>
+							<case additional="level_0=yes" indoor_level="0"/>
+							<case additional="level_1=yes" indoor_level="1"/>
+							<case additional="level_2=yes" indoor_level="2"/>
+							<case additional="level_3=yes" indoor_level="3"/>
+							<case additional="level_3=yes" indoor_level="3"/>
+							<case additional="level_4=yes" indoor_level="4"/>
+							<case additional="level_5=yes" indoor_level="5"/>
+							<case additional="level__1=yes" indoor_level="-1"/>
+							<case additional="level__2=yes" indoor_level="-2"/>
+							<case additional="level__3=yes" indoor_level="-3"/>
+							<case additional="level__4=yes" indoor_level="-4"/>
+							<case additional="level__5=yes" indoor_level="-5"/>
+							<apply objectType="3" order="14"/>
+						</switch>
+					</apply>
+				</switch>
+				<switch tag="highway" area="false">
+					<case value="corridor"/>
+					<case value="footway"/>
+					<case value="steps"/>
+					<apply objectType="2" order="30"/>
+					<apply_if hide_paths="true" additional="indoor" order="-1"/>
+					<apply_if hide_paths="true"  value="corridor" order="-1"/>
+					<apply>
+						<switch>
+							<case additional="level_0=yes"/>
+							<case additional="level_1=yes"/>
+							<case additional="level_2=yes"/>
+							<case additional="level_3=yes"/>
+							<case additional="level_4=yes"/>
+							<case additional="level_5=yes"/>
+							<case additional="level__1=yes"/>
+							<case additional="level__2=yes"/>
+							<case additional="level__3=yes"/>
+							<case additional="level__4=yes"/>
+							<case additional="level__5=yes"/>
+							<apply order="-1" objectType="2"/>
+							<apply>
+								<switch>
+									<case additional="level_0=yes" indoor_level="0"/>
+									<case additional="level_1=yes" indoor_level="1"/>
+									<case additional="level_2=yes" indoor_level="2"/>
+									<case additional="level_3=yes" indoor_level="3"/>
+									<case additional="level_3=yes" indoor_level="3"/>
+									<case additional="level_4=yes" indoor_level="4"/>
+									<case additional="level_5=yes" indoor_level="5"/>
+									<case additional="level__1=yes" indoor_level="-1"/>
+									<case additional="level__2=yes" indoor_level="-2"/>
+									<case additional="level__3=yes" indoor_level="-3"/>
+									<case additional="level__4=yes" indoor_level="-4"/>
+									<case additional="level__5=yes" indoor_level="-5"/>
+									
+									<apply order="88" objectType="2"/>
+								</switch>
+							</apply>
+						</switch>
+					</apply>
+				</switch>
+				<!-- underground parking -->
+				<switch tag="highway" value="service" area="false">
+					<case additional="level_0=yes"/>
+					<case additional="level_1=yes"/>
+					<case additional="level_2=yes"/>
+					<case additional="level_3=yes"/>
+					<case additional="level_4=yes"/>
+					<case additional="level_5=yes"/>
+					<case additional="level__1=yes"/>
+					<case additional="level__2=yes"/>
+					<case additional="level__3=yes"/>
+					<case additional="level__4=yes"/>
+					<case additional="level__5=yes"/>
+					<apply order="-1" objectType="2"/>
+					<apply>
+						<switch>
+							<case additional="level_0=yes" indoor_level="0"/>
+							<case additional="level_1=yes" indoor_level="1"/>
+							<case additional="level_2=yes" indoor_level="2"/>
+							<case additional="level_3=yes" indoor_level="3"/>
+							<case additional="level_3=yes" indoor_level="3"/>
+							<case additional="level_4=yes" indoor_level="4"/>
+							<case additional="level_5=yes" indoor_level="5"/>
+							<case additional="level__1=yes" indoor_level="-1"/>
+							<case additional="level__2=yes" indoor_level="-2"/>
+							<case additional="level__3=yes" indoor_level="-3"/>
+							<case additional="level__4=yes" indoor_level="-4"/>
+							<case additional="level__5=yes" indoor_level="-5"/>
+							<apply order="88" objectType="2"/>
+						</switch>
+					</apply>
+				</switch>
+			</switch>
+		
+			<switch  >
+				<case tag="shop" value=""/>
+				<case tag="amenity" value=""/>
+				<switch tag="amenity">
+					<case value="restaurant"/>
+					<case value="cafe"/>
+					<case value="fast_food"/>
+					<case value="food_court"/>
+					<case value="pub"/>
+					<case value="bar"/>
+					<case value="biergarten"/>
+					<case value="ice_cream"/>
+					<case value="drinking_water"/>
+					<case value="water_point"/>
+					<case value="hookah_lounge"/>
+				</switch>
+				<case tag="craft" value=""/>
+				<case tag="leisure" value="marina"/>
+				<case tag="leisure" value=""/>
+				<case tag="office" value=""/>
+				<!-- Default theme has a few additional cases hiding certain ammenities
+					at small zoom levels while in car mode, but it's not important
+					to reimplement them here for indoor style.
+				 -->
+
+				<apply objectType="1" order="128"/>
+				<apply>
+					<switch>
+						<case additional="level_0=yes"/>
+						<case additional="level_1=yes"/>
+						<case additional="level_2=yes"/>
+						<case additional="level_3=yes"/>
+						<case additional="level_4=yes"/>
+						<case additional="level_5=yes"/>
+						<case additional="level__1=yes"/>
+						<case additional="level__2=yes"/>
+						<case additional="level__3=yes"/>
+						<case additional="level__4=yes"/>
+						<case additional="level__5=yes"/>
+						<apply objectType="1" order="-1"/>
+						<apply>
+							<switch>
+								<case additional="level_0=yes" indoor_level="0"/>
+								<case additional="level_1=yes" indoor_level="1"/>
+								<case additional="level_2=yes" indoor_level="2"/>
+								<case additional="level_3=yes" indoor_level="3"/>
+								<case additional="level_4=yes" indoor_level="4"/>
+								<case additional="level_5=yes" indoor_level="5"/>
+								<case additional="level__1=yes" indoor_level="-1"/>
+								<case additional="level__2=yes" indoor_level="-2"/>
+								<case additional="level__3=yes" indoor_level="-3"/>
+								<case additional="level__4=yes" indoor_level="-4"/>
+								<case additional="level__5=yes" indoor_level="-5"/>
+								<apply objectType="1" order="128"/>
+							</switch>
+						</apply>
+					</switch>
+				</apply>
+			</switch>
+		 
+		</switch>
+	</order>
+	<polygon>
+		
+		<switch enable_indoor="true">
+			<case tag="public_transport" value="platform" color="$transport_platform" color_2="#888b8d" strokeWidth_2="0.5"/>
+		</switch>
+		<switch minzoom="$indoor_minzoom" enable_indoor="true">
+			<switch tag="indoor">
+				<case value="no"/>
+				<switch>
+					
+					<case value="room" color="$indoor_room" color_2="$indoor_wall" strokeWidth_2="2"/>
+					<case value="area" color="$indoor_area"/>
+					<apply>
+						<apply_if additional="shop=clothes" color="#ff0000"  strokeWidth_2="5"/>
+						<switch>
+							<case additional="highway=elevator" color="$indoor_vert"/>
+							<case additional="stairs=yes" color="$indoor_vert"/>
+							<case additional="amenity=toilets" color="#e3c8e3"/>
+							<case additional="shop" color="$indoor_commerce"/>
+							<case additional="ammenity=cafe" color="$indoor_commerce"/>
+							<case additional="ammenity=fast_food" color="$indoor_commerce"/>
+							<case additional="ammenity=restaurant" color="$indoor_commerce"/>
+						</switch>
+					</apply>
+				</switch>
+				
+				<case value="corridor" color="$indoor_corridor"/>
+				<case value="level" color="$indoor_level"/>
+
+				<case value="wall" color="$indoor_wall" color_2="$indoor_wall" strokeWidth_2="2"/>
+				<case value="column" color="$indoor_wall"/>
+			</switch>
+		</switch>
+	</polygon>
+	<line>
+		<switch enable_indoor="true">
+			<case tag="indoor" value="wall" color="$indoor_wall" strokeWidth="2"/>
+		</switch>
+	</line>
+	<point>
+	</point>
+	<text>
+		<switch enable_indoor="true">
+			<!-- This successfully removes extra labels related to addr:houesenumber rules on rooms,
+				without removing them from buildings. I have no idea how or why it works.-->
+			<!-- Otherwise indoor=room+shop="something"+addr:housenumber displays extra labels.
+				Why would you tag rooms with address? Because rooms are tagged with shops, 
+					and shop POI regardless of whether they are points or attached to some polygon
+					object like building or room have address (at least in some regions).
+			-->
+			<case tag="addr:housenumber" value="" nameTag2="addr:housenumber" >
+				<apply_if additional="indoor" textColor="#ff0000" textSize="5"/>
+			</case>
+
+			<!-- room numbers -->
+			<switch tag="indoor" value="room">
+				<case nameTag="" nameTag2="ref" textOrder="170" />
+				<case nameTag="ref" textOrder="171"/>
+				<apply textSize="10" textColor="#000000" textHaloColor="#ffffff" textHaloRadius="1"/>
+			</switch>
+		</switch>
+	</text>
+
+</renderingStyle>
